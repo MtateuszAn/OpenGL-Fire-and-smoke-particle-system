@@ -22,8 +22,8 @@ int main()
 	// So that means we only have the modern functions
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
-	GLFWwindow* window = glfwCreateWindow(width, height, "YoutubeOpenGL", NULL, NULL);
+	// Create a GLFWwindow object of 800 by 800 pixels
+	GLFWwindow* window = glfwCreateWindow(width, height, "OpenGL-Fire and Smoke", NULL, NULL);
 	// Error check if the window fails to create
 	if (window == NULL)
 	{
@@ -76,6 +76,7 @@ int main()
 	int fireMaxPar = 50;
 	float fireParlifeTime = 1.2f;
 	ParticleSystemFire firePS(fireModel, emiterPos, emiterCircleSize, fireParEmitSpeed, fireMaxPar, particleTransf, particleScale, fireParlifeTime);
+
 	//Smoke ParticleSystem
 	ParticleSystemFire smokePS(smokeModel, glm::vec3(0.0f, -0.65f, 0.0f), 0.15f, 0.45f, 50, glm::vec3(0.0f, -0.4f, 0.0f), glm::vec3(0.15f), 2.4f);
 
