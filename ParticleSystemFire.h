@@ -6,10 +6,11 @@
 class ParticleSystemFire
 {
 public:
+	//Emiter variables
 	glm::vec3 startPosition;
 	float emiterCircleSize =0.1f;
 	float emitSpeed;
-
+	//Particle variables
 	Mesh particleMesh;
 	int maxParticles;
 	glm::vec3 particleTransform;
@@ -21,7 +22,9 @@ public:
 
 
 	ParticleSystemFire(Mesh mesh, glm::vec3 startPosition, float emiterCircleSize, float emitSpeed, int maxParticles, glm::vec3 particleTransform, glm::vec3 particleScale, float partycleLifeTime);
+	//updates particle positions, destroys old particles and create new ones
 	void Update();
+	//draw particles
 	void Draw(Shader& shader, Camera& camer);
 private:
 	float uniform();

@@ -32,7 +32,7 @@ void ParticleFire::Update(glm::vec3 position, glm::vec3 rotation, glm::vec3 scal
 bool ParticleFire::UpdateLife(float life)
 {
 	this->life -= life;
-	if (this->life < 0)
+	if (this->life <= 0)
 		return false;
 	else
 		return true;

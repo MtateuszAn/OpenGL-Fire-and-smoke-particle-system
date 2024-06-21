@@ -16,30 +16,28 @@ ParticleSystemFire::ParticleSystemFire(Mesh mesh, glm::vec3 startPosition, float
 void ParticleSystemFire::Update()
 {
 	//Emit new Particles
-	if (particleList.size() < maxParticles) {
-		if (timeLastEmited >= emitSpeed) {
-			glm::vec3 rotation = glm::vec3(0.0f);
-			glm::vec3 scale = glm::vec3(1.0f);
-			particleList.push_back(ParticleFire(randPoint(), rotation, particleScale, partycleLifeTime));
-			timeLastEmited = 0;
-		}
-		else {
-			timeLastEmited += deltaTime;
-		}
+	if (particleList.size() < maxParticles && timeLastEmited >= emitSpeed) {
+		glm::vec3 rotation = glm::vec3(0.0f);
+		glm::vec3 scale = glm::vec3(1.0f);
+		particleList.push_back(ParticleFire(randPoint(), rotation, particleScale, partycleLifeTime));
+		timeLastEmited = 0;
+	}
+	else {
+		timeLastEmited += deltaTime;
 	}
 	//Update All particles
 	auto it = particleList.begin();
 	while (it != particleList.end()) {
 		ParticleFire& particleFire = *it;
-		particleFire.UpdateLife(deltaTime);
-		// Delate Particle
-		if (particleFire.life <= 0) {
-			it = particleList.erase(it);
-		}
-		else {
+		// if particle life is above zero
+		if (particleFire.UpdateLife(deltaTime)) {
 			// UpdateParticle
 			particleFire.Update(particleTransform, glm::vec3(0.0f), particleScale);
 			++it; // nextParticle
+		}
+		else {
+			// Delate Particle
+			it = particleList.erase(it);
 		}
 	}
 }
